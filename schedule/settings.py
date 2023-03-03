@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'app',
     'accounts',
+    'django-calendar',
     "crispy_forms",
     "crispy_bootstrap5",
     'django.contrib.admin',

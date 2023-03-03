@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("schedule/", include('app.urls')),
     path("authentication/", include('accounts.urls')),
+    path("calendar", include('django-calendar.urls')),
 ]
