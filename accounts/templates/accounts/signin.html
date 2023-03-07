@@ -41,6 +41,9 @@
                                                 <span>or</span>
                                             </p>
                                         </div>
+                                        {% if request.user.is_authenticated %}
+                                        <h2 class = "mb-3 text-center logged">You are already logged in!</h2>
+                                        {% else %}
                                         <form action="{% url 'accounts:index' %}" method="post" class="signup-form" name = >
                                             {% csrf_token %}
                                             <div class="row">
@@ -53,9 +56,12 @@
                                                 </div>
                                             </div>
                                         </form>
+                                        
+
                                         <div class="w-100">
                                             <p class="mt-4">Don't have an account yet? <a href="{% url 'accounts:signup' %}">Sign Up</a></p>
                                         </div>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>

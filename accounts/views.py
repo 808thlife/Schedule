@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.urls import reverse
 from django import forms
 
-
+from .models import User
 
 #APP FOR AUTH
 

@@ -1,0 +1,11 @@
+{% extends 'app/layout.html' %}
+
+{% block body %}
+<h1>Adding some information</h1>
+<nav class="navbar navbar-light bg-light">
+    <span class="navbar-brand mb-0 h1 link-secondary">Add</span>
+    <a href="{% url 'scheduleapp:addStudent' %}"><button href="{% url 'scheduleapp:addStudent'%}" class="btn btn-primary">A New Students</button></a>
+    <a href="{% url 'scheduleapp:addLesson' %}"><button href="{% url 'scheduleapp:addLesson'%}" class="btn btn-primary">A New Lesson</button></a>
+    <a href="{% url 'scheduleapp:addTeacher' %}"><button href="{% url 'scheduleapp:addTeacher'%}" class="btn btn-primary">A New Teacher</button></a>
+</nav>
+{% endblock body %}

@@ -13,3 +13,12 @@ class Lesson(models.Model):
 
     def __str__(self):
         return f"{self.title} is teached by {self.teacher} on {self.time}"
+    
+class Students(models.Model):
+    group_year = models.IntegerField()
+    group_title = models.CharField(max_length= 10)
+    group_number = models.IntegerField()
+    lessons = models.ManyToManyField(Lesson)
+
+    def __str__(self):
+        return self.group_title
