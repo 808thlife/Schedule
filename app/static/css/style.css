@@ -4410,6 +4410,7 @@ input[type="button"].btn-block {
   position: relative;
   display: block;
   padding: 0.75rem 1.25rem;
+  margin-top: 25px;
   margin-bottom: -1px;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.125); }
@@ -8215,6 +8216,10 @@ h1, h2, h3, h4, h5,
   width: 100%; }
 
 #sidebar {
+  z-index: 1; 
+  top: 0; 
+  overflow-x: hidden;
+  height: auto;
   min-width: 270px;
   max-width: 270px;
   background: #8338ec;
@@ -8232,6 +8237,7 @@ h1, h2, h3, h4, h5,
         padding: 10px 0; }
         #sidebar.active ul.components li a span {
           margin-right: 0;
+          padding:20px;
           display: block;
           font-size: 24px; }
     #sidebar.active .logo {

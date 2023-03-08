@@ -2,13 +2,22 @@
 
 {% block body %}
 <h1>You Are Adding A New Students. <br>Please, fill in this form.</h1>
-<form>
+<form action = "{% url 'scheduleapp:addStudent' %}" method = "post" class = "was-validated">
+  {% csrf_token %}
     <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Year of a students</label>
-      <input type="number" class="form-control">
-      <label for="exampleInputEmail1"></label>
-      <input type="text" name="form-control">
+      <label for="year" class="form-label">Year of a students</label>
+      <input type="number" class="form-control is-invalid" name = "year" id="year" required>
+      <label for="faculty" class="form-label">Faculty</label>
+      <input type="text" class="form-control is-valid" name = "faculty" id = "faculty" required>
+      <label for="num" class="form-label">Group's Number</label>
+      <input type="number" class="form-control is-valid" name = "group_number" id = "num" required>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Add</button>
   </form>
+  <ul class="list-group">
+    <li class="list-group-item active" aria-current="true">Currently Active Groups:</li>
+    {% for item in students %}
+    <a href = "add-student/{{item.group_year}}"><li class="list-group-item">{{item.group_year}}st Year</li></a>
+    {% endfor %}
+  </ul>
 {% endblock body %}
