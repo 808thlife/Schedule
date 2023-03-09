@@ -3428,6 +3428,7 @@ input[type="button"].btn-block {
   display: block; }
 
 .navbar {
+  text-align: center;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -4428,8 +4429,8 @@ input[type="button"].btn-block {
   .list-group-item.active {
     z-index: 2;
     color: #fff;
-    background-color: #007bff;
-    border-color: #007bff; }
+    background-color: #8338ec;
+    border-color: #8338ec; }
 
 .list-group-horizontal {
   -webkit-box-orient: horizontal;
@@ -8218,7 +8219,6 @@ h1, h2, h3, h4, h5,
 #sidebar {
   z-index: 1; 
   top: 0; 
-  overflow-x: hidden;
   height: auto;
   min-width: 270px;
   max-width: 270px;
@@ -8333,3 +8333,7 @@ a[data-toggle="collapse"] {
   .btn.btn-primary:hover, .btn.btn-primary:focus {
     background: #3e64ff !important;
     border-color: #3e64ff !important; }
+
+table{
+  text-align: center;
+}

@@ -2,6 +2,11 @@
 
 {% block body %}
 <h1>You Are Adding A New Students. <br>Please, fill in this form.</h1>
+{% if messages %}
+    {% for i in messages %}
+        {{i}}
+    {% endfor %}
+{% endif %}
 <form action = "{% url 'scheduleapp:addStudent' %}" method = "post" class = "was-validated">
   {% csrf_token %}
     <div class="mb-3">
@@ -15,9 +20,15 @@
     <button type="submit" class="btn btn-primary">Add</button>
   </form>
   <ul class="list-group">
-    <li class="list-group-item active" aria-current="true">Currently Active Groups:</li>
-    {% for item in students %}
-    <a href = "add-student/{{item.group_year}}"><li class="list-group-item">{{item.group_year}}st Year</li></a>
-    {% endfor %}
-  </ul>
+    <li class="list-group-item active" aria-current="true">Active Years:</li>
+    <nav class="navbar navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1 link-secondary">Select</span>
+        <a href="{% url 'scheduleapp:viewStudents' 1%}"><button href="{% url 'scheduleapp:viewStudents' 1%}" class="btn btn-primary" name = "1">1 Year</button></a>
+        <a href="{% url 'scheduleapp:viewStudents' 2%}"><button href="{% url 'scheduleapp:viewStudents' 2%}" class="btn btn-primary" name = "2">2 Year</button></a>
+        <a href="{% url 'scheduleapp:viewStudents' 3%}"><button href="{% url 'scheduleapp:viewStudents' 3%}" class="btn btn-primary" name = "3">3 Year</button></a>
+        <a href="{% url 'scheduleapp:viewStudents' 4%}"><button href="{% url 'scheduleapp:viewStudents' 4%}" class="btn btn-primary" name = "4">4 Year</button></a>
+        <a href="{% url 'scheduleapp:viewStudents' 5%}"><button href="{% url 'scheduleapp:viewStudents' 5%}" class="btn btn-primary" name = "5">5 Year</button></a>
+
+    </nav>
+  </ul> 
 {% endblock body %}

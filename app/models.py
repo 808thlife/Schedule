@@ -1,5 +1,4 @@
 from django.db import models
-
 from accounts.models import User
 
 # Create your models here.
@@ -18,7 +17,10 @@ class Students(models.Model):
     group_year = models.IntegerField()
     group_title = models.CharField(max_length= 10)
     group_number = models.IntegerField()
-    lessons = models.ManyToManyField(Lesson)
+    lessons = models.ManyToManyField(Lesson, blank=True)
 
     def __str__(self):
-        return self.group_title
+        return f"{self.group_year}{self.group_title}-{self.group_number}"
+
+    class Meta:
+        unique_together = ('group_year', 'group_title', 'group_number')

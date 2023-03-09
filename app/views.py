@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.views import generic
-from django import forms
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.contrib import messages
 
 from .models import User, Students, Lesson
 
@@ -30,14 +32,24 @@ def addStudent(request):
         year = request.POST["year"]
         faculty = request.POST["faculty"]
         number = request.POST["group_number"]
-        f = Students(group_year = year, group_title = faculty, group_number = number)
-        f.save()
+        if Students.objects.filter(group_year = year, group_title = faculty, group_number = number).exists():
+            messages.error(request,"This group already exists.")
+        else:
+            f = Students(group_year = year, group_title = faculty, group_number = number)
+            f.save()
     return render(request, "app/AddingForms/addStudents.html")
+
+def deleteStudent(request, year_id):
+    relevant_student = Students.objects.get(id = year_id)
+    if request.method == "POST":
+        Students.objects.filter(id = year_id).delete()
+    return HttpResponseRedirect(reverse("scheduleapp:viewStudents", kwargs={"year_id":relevant_student.group_year}))
 
 #viewing
 def viewStudents(request, year_id):
-    arr = Students.objects.all()
-    context = {"year_id":year_id, 'students':arr}
+    #mh,tmuh, telecom, art
+    arr = Students.objects.filter(group_year = year_id).order_by("group_title")
+    context = {'students':arr,}
     return render(request, "app/AddingForms/Studentslist.html", context)
 
 def addLesson(request):

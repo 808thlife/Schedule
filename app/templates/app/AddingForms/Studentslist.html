@@ -1,1 +1,25 @@
 {% extends 'app/layout.html' %}
+
+{% block body %}
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Group Year</th>
+        <th scope="col">Faculty</th>
+        <th scope="col">Group Number</th>
+        <th scope = "col">Remove</th>
+      </tr>
+    </thead>
+{% for student in students %}
+    <tbody>
+      <tr>
+        <th scope="row">{{student.group_year}}</th>
+        <td>{{student.group_title}}</td>
+        <td>{{student.group_number}}</td>
+        <td><form action = "{% url 'scheduleapp:deleteStudent' student.id%}" method = "post">{% csrf_token %}<button type="submit" class="btn btn-danger" name = "delete">Remove</button></form></td>
+      </tr>
+    </tbody>
+{% endfor %}
+</table>
+
+{% endblock body %}
