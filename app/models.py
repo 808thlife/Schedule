@@ -13,16 +13,16 @@ class DaysOfWeek(models.Model):
 
 class Lesson(models.Model):
     title = models.CharField(max_length = 32)
-    time = models.TimeField(blank=True)
+    time = models.TimeField(blank=True , null= True)
     teacher = models.ForeignKey(User, on_delete = models.CASCADE, related_name = "teacher")
-    cabinet = models.IntegerField(blank= True)
-    day = models.ForeignKey(DaysOfWeek, on_delete= models.CASCADE ,related_name = "day", blank= True)
+    cabinet = models.IntegerField(blank= True , null= True)
+    day = models.ForeignKey(DaysOfWeek, on_delete= models.CASCADE ,related_name = "day", blank= True , null= True)
 
     def __str__(self):
         return f"{self.title} is teached by {self.teacher} on {self.time}"
 
-    class Meta:
-        unique_together = ('teacher')
+    # class Meta:
+    #     unique_together = ('teacher')
     
 class Students(models.Model):
     group_year = models.IntegerField()
