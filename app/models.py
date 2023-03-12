@@ -22,7 +22,7 @@ class Lesson(models.Model):
         return f"{self.title} is teached by {self.teacher} on {self.time}"
 
     class Meta:
-        unique_together = ('teacher', 'time')
+        unique_together = ('teacher')
     
 class Students(models.Model):
     group_year = models.IntegerField()

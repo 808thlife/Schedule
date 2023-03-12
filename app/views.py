@@ -57,14 +57,14 @@ def addLesson(request):
     if request.method == "POST":
         lesson_title = request.POST["title_lesson"]
         teacher = request.POST.get("teacher")
-        cabinet = request.POST.get("cab_number")
-        time = request.POST["les_time"]
-        day = request.POST["select-day"]
+        # cabinet = request.POST.get("cab_number")
+        # time = request.POST["les_time"]
+        # day = request.POST["select-day"]
         user = User.objects.get(id = teacher)
-        if Lesson.objects.filter(title = lesson_title, time = time, teacher = user, cabinet = cabinet, day = day).exists():
+        if Lesson.objects.filter(title = lesson_title ,teacher = user).exists():
             messages.error("This lesson already exists!")
         else:
-            f = Lesson(title = lesson_title, time = time, teacher = teacher, cabinet = cabinet, day = day)
+            f = Lesson(title = lesson_title ,teacher = user)
             f.save()
     context = {"days":days, "teachers":User.objects.all()}
     return render(request, "app/AddingForms/addLesson.html", context)

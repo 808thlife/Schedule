@@ -20,7 +20,7 @@
         {% endfor %}
 
       </select>
-      <label for="cab_number" class="form-label">Where it's teached?</label>
+      {% comment %} <label for="cab_number" class="form-label">Where it's teached?</label>
       <input type="number" class="form-control is-invalid" name = "cab_nubmer" id="cab_nubmer" required>
       <label for="day" class="form-label">When it's teached?</label>
       <select class="form-select form-control " id="select-day" aria-describedby="validationServer04Feedback" name = "select-day" required>
@@ -30,7 +30,7 @@
         {% endfor %}
       </select>
       <label for="les_time" class="form-label">Time of the lesson?</label>
-      <input type="time" class="form-control is-valid" name = "les_time" id = "les_time" required>
+      <input type="time" class="form-control is-valid" name = "les_time" id = "les_time" required> {% endcomment %}
     </div>
     <button type="submit" class="btn btn-primary">Add</button>
   </form>
