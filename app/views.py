@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
 
-from .models import User, Students, Lesson
+from .models import User, Students, Lesson, DaysOfWeek
 
 @login_required(login_url="accounts:index")
 def index(request):
@@ -53,9 +53,25 @@ def viewStudents(request, year_id):
     return render(request, "app/AddingForms/Studentslist.html", context)
 
 def addLesson(request):
-    context = {}
-    return render(request, "app/AddingForms/addLesson.html")
+    days = DaysOfWeek.objects.all()
+    if request.method == "POST":
+        lesson_title = request.POST["title_lesson"]
+        teacher = request.POST.get("teacher")
+        cabinet = request.POST.get("cab_number")
+        time = request.POST["les_time"]
+        day = request.POST["select-day"]
+        user = User.objects.get(id = teacher)
+        if Lesson.objects.filter(title = lesson_title, time = time, teacher = user, cabinet = cabinet, day = day).exists():
+            messages.error("This lesson already exists!")
+        else:
+            f = Lesson(title = lesson_title, time = time, teacher = teacher, cabinet = cabinet, day = day)
+            f.save()
+    context = {"days":days, "teachers":User.objects.all()}
+    return render(request, "app/AddingForms/addLesson.html", context)
 
 def addTeacher(request):
     context = {}
     return render(request, "app/AddingForms/addTeacher.html")
+
+def search(request):
+    pass

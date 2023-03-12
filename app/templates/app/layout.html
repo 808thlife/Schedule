@@ -2,17 +2,15 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Sidebar 07</title>
+  	<title>Schedule</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link rel="shortcut icon" href="{% static 'images/ben-o-bro-wpU4veNGnHg-unsplash.jpg' %}" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
-		
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="{% static 'css/style.css' %}">
   </head>
   <body>
-		
 		<div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar" class="active">
 				<h1><a href="index.html" class="logo">%/$</a></h1>
@@ -33,7 +31,6 @@
             <a href="{%url 'accounts:signout' %}"><span class="fa fa-paper-plane"></span> Log out</a>
           </li>
         </ul>
-
         <div class="footer">
         	<p>
 					  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
@@ -51,6 +48,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="nav navbar-nav ml-auto">
+                <form class="form-inline my-2 my-lg-0">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
                 <li class="nav-item active">
                     <a class="nav-link" href="{% url 'scheduleapp:index' %}">Home</a>
                 </li>
@@ -61,7 +62,7 @@
                     <a class="nav-link" href="#">Portfolio</a>
                 </li>
                 <li>
-                  <a href="{%url 'accounts:signout' %}" class = "nav-link">Log out</a>
+                  <a href="{%url 'accounts:signout' %}" class = "nav-link btn btn-danger">Log out</a>
                 </li>
               </ul>
             </div>

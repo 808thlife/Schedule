@@ -13,5 +13,6 @@ urlpatterns = [
     path("<int:year_id>", views.deleteStudent, name = "deleteStudent"),
     path("add-lesson/", views.addLesson, name = "addLesson"),
     path("add-teacher/", views.addTeacher, name = "addTeacher"),
-    path("add-student/<int:year_id>/", views.viewStudents, name = "viewStudents")
+    path("add-student/<int:year_id>/", views.viewStudents, name = "viewStudents"),
+    path("search", views.search, name = "search")
 ]

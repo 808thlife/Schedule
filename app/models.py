@@ -1,17 +1,28 @@
 from django.db import models
 from accounts.models import User
+from django.core.validators import MinValueValidator, MaxValueValidator
 
-# Create your models here.
+class DaysOfWeek(models.Model):
+    name = models.CharField(verbose_name="name", max_length=10)
+    
+    def __str__(self):
+        return f"{self.id} - {self.name}"
+    
+    class Meta:
+        ordering = ('id',)
 
 class Lesson(models.Model):
-    title = models.CharField(max_length = 32, default = "Write Description of this class (Who is the teacher? Who teacher going to teach and what subject etc...)" )
-    time = models.CharField(max_length=12)
+    title = models.CharField(max_length = 32)
+    time = models.TimeField(blank=True)
     teacher = models.ForeignKey(User, on_delete = models.CASCADE, related_name = "teacher")
-    cabinet = models.IntegerField()
-    description = models.CharField(max_length = 100, null = True)
+    cabinet = models.IntegerField(blank= True)
+    day = models.ForeignKey(DaysOfWeek, on_delete= models.CASCADE ,related_name = "day", blank= True)
 
     def __str__(self):
         return f"{self.title} is teached by {self.teacher} on {self.time}"
+
+    class Meta:
+        unique_together = ('teacher', 'time')
     
 class Students(models.Model):
     group_year = models.IntegerField()

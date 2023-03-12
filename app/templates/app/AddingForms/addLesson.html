@@ -1,5 +1,37 @@
 {% extends 'app/layout.html' %}
 
 {% block body %}
-SaddingLesson
+<h1>You Are Adding A New Lesson. <br>Please, fill in this form.</h1>
+{% if messages %}
+    {% for i in messages %}
+        {{i}}
+    {% endfor %}
+{% endif %}
+<form action = "{% url 'scheduleapp:addLesson' %}" method = "post" class = "was-validated">
+  {% csrf_token %}
+    <div class="mb-3">
+      <label for="title_lesson" class="form-label">Title of a lesson</label>
+      <input type="text" class="form-control is-invalid" name = "title_lesson" id="title_lesson" required>
+      <label for="teacher" class="form-label">Choose the Teacher</label>
+      <select class="form-select form-control" id="teacher" aria-describedby="validationServer04Feedback" name = "teacher" required>
+        <option value="" disabled selected>Who is the teacher?</option>
+        {% for teacher in teachers %}
+            <option value="{{teacher.id}}">{{teacher}}</option>
+        {% endfor %}
+
+      </select>
+      <label for="cab_number" class="form-label">Where it's teached?</label>
+      <input type="number" class="form-control is-invalid" name = "cab_nubmer" id="cab_nubmer" required>
+      <label for="day" class="form-label">When it's teached?</label>
+      <select class="form-select form-control " id="select-day" aria-describedby="validationServer04Feedback" name = "select-day" required>
+        <option value="" selected disabled>Choose the day</option>
+        {% for day in days %}
+            <option value="{{day.id}}">{{day.name}}</option>
+        {% endfor %}
+      </select>
+      <label for="les_time" class="form-label">Time of the lesson?</label>
+      <input type="time" class="form-control is-valid" name = "les_time" id = "les_time" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Add</button>
+  </form>
 {% endblock body %}
